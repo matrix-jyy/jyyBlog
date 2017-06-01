@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zkingsoft.dao.web.WebAdcolumnDao">
+	<!-- 定义WebAdcolumn 的复杂关联map -->
+	<resultMap type="WebAdcolumn" id="WebAdcolumnMap">
+			<id property="colId" column="col_id" />
+			<result property="colName" column="col_name" />
+			<result property="colRemark" column="col_remark" />
+			<result property="colCapacity" column="col_capacity" />
+			<result property="code" column="code" />
+	</resultMap>
+	
+	
+	<!-- 定义WebAdcolumn 的简单map  ，本map不添加其他的关联属性 -->
+	<resultMap type="WebAdcolumn" id="WebAdcolumnSimpleMap">
+			<id property="colId" column="col_id" />
+			<result property="colName" column="col_name" />
+			<result property="colRemark" column="col_remark" />
+			<result property="colCapacity" column="col_capacity" />
+				<result property="code" column="code" />
+	</resultMap>
+	
+	
+	
+	<!--  插入方法   -->
+	<insert id="insert" parameterType="WebAdcolumn"
+		useGeneratedKeys="true" keyProperty="colId">
+		INSERT INTO web_adcolumn (
+			col_id,
+			col_name,
+			col_remark,
+			col_capacity,
+			code
+		)
+	VALUES (
+			#{colId},
+			#{colName},
+			#{colRemark},
+			#{colCapacity},
+			#{code}
+	)
+	</insert>
+	
+	
+	
+	<!--  批量插入   -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		INSERT INTO web_adcolumn (
+			col_id,
+			col_name,
+			col_remark,
+			col_capacity,
+			code
+		)
+	VALUES 
+	<foreach collection="list" item="item" index="index" separator=",">(
+			#{item.colId},
+			#{item.colName},
+			#{item.colRemark},
+			#{item.colCapacity},
+			#{item.code}
+			
+	)</foreach>
+	</insert>
+	
+	
+	
+	
+	
+	<!--  根据Map更新 部分更新   -->
+	<update id="updateByMap" parameterType="java.util.HashMap" >
+		UPDATE web_adcolumn
+		<set>
+			<if test="_parameter.containsKey('colName')">
+					col_name = #{colName},
+				</if>		
+			<if test="_parameter.containsKey('colRemark')">
+					col_remark = #{colRemark},
+				</if>		
+			<if test="_parameter.containsKey('colCapacity')">
+					col_capacity = #{colCapacity},
+				</if>		
+			<if test="_parameter.containsKey('code')">
+					code = #{code},
+				</if>		
+		</set>
+		WHERE col_id=#{colId} 
+	</update>
+	
+	
+	
+	<!--  根据对象更新 部分更新   -->
+	<update id="updateByModel" parameterType="Long">
+		UPDATE web_adcolumn
+		<set>
+				<if test="(colName!=null and colName!='') or (colName!='' and colName==0)">
+					col_name = #{colName},
+				</if>		
+				<if test="(colRemark!=null and colRemark!='') or (colRemark!='' and colRemark==0)">
+					col_remark = #{colRemark},
+				</if>		
+				<if test="(colCapacity!=null and colCapacity!='') or (colCapacity!='' and colCapacity==0)">
+					col_capacity = #{colCapacity},
+				</if>	
+				<if test="(code!=null and code!='') or (code!='' and code==0)">
+					code = #{code},
+				</if>		
+		</set>
+		WHERE col_id=#{colId} 
+	</update>
+	
+	
+	<!-- 批量删除 -->
+	<delete id="deleteByIds" parameterType="java.util.List">
+		delete from web_adcolumn where  col_id in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+		
+	<!-- 根据id删除-->
+	<delete id="deleteById" parameterType="Long">
+		DELETE FROM web_adcolumn
+		where  col_id=#{colId} 
+	</delete>
+	
+	<!-- 根据对象删除-->
+	<delete id="deleteByModel" parameterType="Long">
+		DELETE FROM web_adcolumn
+		where 1=1
+		<if test="record!=null">
+			<if test="(record.colId!=null and record.colId!='') or (record.colId!='' and record.colId==0)">
+				and col_id = #{record.colId} 
+			</if>
+			<if test="(record.colName!=null and record.colName!='') or (record.colName!='' and record.colName==0)">
+				and col_name = #{record.colName} 
+			</if>
+			<if test="(record.colRemark!=null and record.colRemark!='') or (record.colRemark!='' and record.colRemark==0)">
+				and col_remark = #{record.colRemark} 
+			</if>
+			<if test="(record.colCapacity!=null and record.colCapacity!='') or (record.colCapacity!='' and record.colCapacity==0)">
+				and col_capacity = #{record.colCapacity} 
+			</if>
+			<if test="(record.code!=null and record.code!='') or (record.code!='' and record.code==0)">
+				and code = #{record.code} 
+			</if>
+		</if>
+	</delete>
+	
+	
+	
+	<!-- 分页查询 -->
+	<select id="selectInPage" resultMap="WebAdcolumnMap">
+		select 
+			col_id,
+			col_name,
+			col_remark,
+			col_capacity,
+			code
+		from web_adcolumn
+		where 1=1
+		<if test="record!=null">
+			<if test="(record.colId!=null and record.colId!='') or (record.colId!='' and record.colId==0)">
+				and col_id  = #{record.colId} 
+			</if>
+			<if test="(record.colName!=null and record.colName!='') or (record.colName!='' and record.colName==0)">
+				and col_name  like concat('%',#{record.colName},'%')  
+			</if>
+			<if test="(record.colRemark!=null and record.colRemark!='') or (record.colRemark!='' and record.colRemark==0)">
+				and col_remark  like concat('%',#{record.colRemark},'%')  
+			</if>
+			<if test="(record.colCapacity!=null and record.colCapacity!='') or (record.colCapacity!='' and record.colCapacity==0)">
+				and col_capacity  = #{record.colCapacity} 
+			</if>
+			<if test="(record.code!=null and record.code!='') or (record.code!='' and record.code==0)">
+				and code = #{record.code} 
+			</if>
+		</if>
+		<if test="pageVo !=null"><!-- 判断pageVo对象是否为空 -->
+			<if test="pageVo.sort !=null  and pageVo.order !=null">
+				order by
+				${pageVo.sort} ${pageVo.order}
+			</if>
+			<if test="pageVo.offset >=0  and pageVo.limit >0">
+				limit
+				#{pageVo.offset},#{pageVo.limit}
+			</if>
+		</if>
+	</select>
+	
+	<!-- 查询总条数 -->
+	<select id="selectTotalRecord" parameterType="long"   resultType="java.lang.Integer">
+	select count(*)
+	from web_adcolumn
+		where 1=1
+		<if test="record!=null">
+			<if test="(record.colId!=null and record.colId!='') or (record.colId!='' and record.colId==0)">
+			and col_id = #{record.colId} 
+			</if>
+			<if test="(record.colName!=null and record.colName!='') or (record.colName!='' and record.colName==0)">
+			and col_name = #{record.colName} 
+			</if>
+			<if test="(record.colRemark!=null and record.colRemark!='') or (record.colRemark!='' and record.colRemark==0)">
+			and col_remark like concat('%',#{record.colRemark},'%')  
+			</if>
+			<if test="(record.colCapacity!=null and record.colCapacity!='') or (record.colCapacity!='' and record.colCapacity==0)">
+			and col_capacity = #{record.colCapacity} 
+			</if>
+			<if test="(record.code!=null and record.code!='') or (record.code!='' and record.code==0)">
+				and code = #{record.code} 
+			</if>
+		</if>
+	</select>
+
+	<!-- 根据id查询-->
+	<select id="selectById" resultMap="WebAdcolumnMap">
+		select 
+			col_id,
+			col_name,
+			col_remark,
+			col_capacity,
+			code
+		from web_adcolumn
+		where  col_id=#{colId} 
+	</select>	
+	
+	
+	<!-- 根据id 锁表查询-->
+	<select id="selectForUpdate" resultMap="WebAdcolumnMap">
+		select 
+			col_id,
+			col_name,
+			col_remark,
+			col_capacity,
+			code
+		from web_adcolumn
+		where  col_id=#{col_id} 
+		for update
+	</select>	
+	
+	
+	
+	<!-- 根据对象查询-->
+	<select id="selectByModel" resultMap="WebAdcolumnMap">
+		select 
+			col_id,
+			col_name,
+			col_remark,
+			col_capacity,
+			code
+		from web_adcolumn
+		where 1=1
+		<if test="record!=null">
+			<if test="(record.colId!=null and record.colId!='') or (record.colId!='' and record.colId==0)">
+				and col_id = #{record.colId} 
+			</if>
+			<if test="(record.colName!=null and record.colName!='') or (record.colName!='' and record.colName==0)">
+				and col_name = #{record.colName} 
+			</if>
+			<if test="(record.colRemark!=null and record.colRemark!='') or (record.colRemark!='' and record.colRemark==0)">
+				and col_remark like concat('%',#{record.colRemark},'%')  
+			</if>
+			<if test="(record.colCapacity!=null and record.colCapacity!='') or (record.colCapacity!='' and record.colCapacity==0)">
+				and col_capacity = #{record.colCapacity} 
+			</if>
+			<if test="(record.code!=null and record.code!='') or (record.code!='' and record.code==0)">
+				and code = #{record.code} 
+			</if>
+		</if>
+	</select>
+	<select id="selectRemark" resultMap="WebAdcolumnMap">
+		select col_remark from web_adcolumn GROUP BY col_remark;
+	</select>
+	
+</mapper>

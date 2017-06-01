@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zkingsoft.dao.web.WebMsgDao">
+	<!-- 定义WebMsg 的复杂关联map -->
+	<resultMap type="WebMsg" id="WebMsgMap">
+		<id property="msgId" column="msg_id" />
+		<result property="msgType" column="msg_type" />
+		<result property="msgUserName" column="msg_user_name" />
+		<result property="msgTel" column="msg_tel" />
+		<result property="msgAddress" column="msg_address" />
+		<result property="msgContent" column="msg_content" />
+		<result property="info1" column="info_1" />
+		<result property="info2" column="info_2" />
+		<result property="info3" column="info_3" />
+		<result property="createTime" column="create_time" />
+	</resultMap>
+
+
+	<!-- 定义WebMsg 的简单map ，本map不添加其他的关联属性 -->
+	<resultMap type="WebMsg" id="WebMsgSimpleMap">
+		<id property="msgId" column="msg_id" />
+		<result property="msgType" column="msg_type" />
+		<result property="msgUserName" column="msg_user_name" />
+		<result property="msgTel" column="msg_tel" />
+		<result property="msgAddress" column="msg_address" />
+		<result property="msgContent" column="msg_content" />
+		<result property="info1" column="info_1" />
+		<result property="info2" column="info_2" />
+		<result property="info3" column="info_3" />
+		<result property="createTime" column="create_time" />
+	</resultMap>
+
+	<!-- 字段sql -->
+	<sql id="columns">
+		msg_id,
+		msg_type,
+		msg_user_name,
+		msg_tel,
+		msg_address,
+		msg_content,
+		info_1,
+		info_2,
+		info_3,
+		create_time
+	</sql>
+
+	<!-- 属性sql -->
+	<sql id="propertys">
+		#{msgId},
+		#{msgType},
+		#{msgUserName},
+		#{msgTel},
+		#{msgAddress},
+		#{msgContent},
+		#{info1},
+		#{info2},
+		#{info3},
+		#{createTime}
+	</sql>
+
+	<!-- where sql -->
+	<sql id="where_sql">
+
+		<if test="record!=null">
+			<if
+				test="(record.msgId!=null and record.msgId!='') or (record.msgId!='' and record.msgId==0)">
+				and msg_id = #{record.msgId}
+			</if>
+			<if
+				test="(record.msgType!=null and record.msgType!='') or (record.msgType!='' and record.msgType==0)">
+				and msg_type = #{record.msgType}
+			</if>
+			<if
+				test="(record.msgUserName!=null and record.msgUserName!='') or (record.msgUserName!='' and record.msgUserName==0)">
+				and msg_user_name = #{record.msgUserName}
+			</if>
+			<if
+				test="(record.msgTel!=null and record.msgTel!='') or (record.msgTel!='' and record.msgTel==0)">
+				and msg_tel = #{record.msgTel}
+			</if>
+			<if
+				test="(record.msgAddress!=null and record.msgAddress!='') or (record.msgAddress!='' and record.msgAddress==0)">
+				and msg_address = #{record.msgAddress}
+			</if>
+			<if
+				test="(record.msgContent!=null and record.msgContent!='') or (record.msgContent!='' and record.msgContent==0)">
+				and msg_content like CONCAT('%',#{record.msgContent},'%') 
+			</if>
+			<if
+				test="(record.info1!=null and record.info1!='') or (record.info1!='' and record.info1==0)">
+				and info_1 = #{record.info1}
+			</if>
+			<if
+				test="(record.info2!=null and record.info2!='') or (record.info2!='' and record.info2==0)">
+				and info_2 = #{record.info2}
+			</if>
+			<if
+				test="(record.info3!=null and record.info3!='') or (record.info3!='' and record.info3==0)">
+				and info_3 = #{record.info3}
+			</if>
+			<if
+				test="(record.createTime!=null and record.createTime!='') or (record.createTime!='' and record.createTime==0)">
+				and create_time = #{record.createTime}
+			</if>
+		</if>
+
+	</sql>
+
+	<!-- 插入方法 -->
+	<insert id="insert" parameterType="WebMsg" useGeneratedKeys="true"
+		keyProperty="msgId">
+		INSERT INTO web_msg (
+		<include refid="columns"></include>
+		)
+		VALUES (
+		<include refid="propertys"></include>
+		)
+	</insert>
+
+
+
+	<!-- 批量插入 -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		INSERT INTO web_msg (
+		<include refid="columns"></include>
+		)
+		VALUES
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			<include refid="propertys"></include>
+			)
+		</foreach>
+	</insert>
+
+
+
+
+
+	<!-- 根据Map更新 部分更新 -->
+	<update id="updateByMap" parameterType="java.util.HashMap">
+		UPDATE web_msg
+		<set>
+			<if test="_parameter.containsKey('msgType')">
+				msg_type = #{msgType},
+			</if>
+			<if test="_parameter.containsKey('msgUserName')">
+				msg_user_name = #{msgUserName},
+			</if>
+			<if test="_parameter.containsKey('msgTel')">
+				msg_tel = #{msgTel},
+			</if>
+			<if test="_parameter.containsKey('msgAddress')">
+				msg_address = #{msgAddress},
+			</if>
+			<if test="_parameter.containsKey('msgContent')">
+				msg_content = #{msgContent},
+			</if>
+			<if test="_parameter.containsKey('info1')">
+				info_1 = #{info1},
+			</if>
+			<if test="_parameter.containsKey('info2')">
+				info_2 = #{info2},
+			</if>
+			<if test="_parameter.containsKey('info3')">
+				info_3 = #{info3},
+			</if>
+			<if test="_parameter.containsKey('createTime')">
+				create_time = #{createTime},
+			</if>
+		</set>
+		WHERE msg_id=#{msgId}
+	</update>
+
+
+
+	<!-- 根据对象更新 部分更新 -->
+	<update id="updateByModel" parameterType="Long">
+		UPDATE web_msg
+		<include refid="where_sql"></include>
+		WHERE msg_id=#{msgId}
+	</update>
+
+
+	<!-- 批量删除 -->
+	<delete id="deleteByIds" parameterType="java.util.List">
+		delete from web_msg where msg_id in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 根据id删除 -->
+	<delete id="deleteById" parameterType="Long">
+		DELETE FROM web_msg
+		where
+		msg_id=#{msgId}
+	</delete>
+
+	<!-- 根据对象删除 -->
+	<delete id="deleteByModel" parameterType="Long">
+		DELETE FROM web_msg
+		where 1=1
+		<include refid="where_sql"></include>
+	</delete>
+
+
+
+	<!-- 分页查询 -->
+	<select id="selectInPage" resultMap="WebMsgMap">
+		select
+		<include refid="columns"></include>
+		from web_msg
+		where 1=1
+		<include refid="where_sql"></include>
+		<if test="pageVo !=null"><!-- 判断pageVo对象是否为空 -->
+			<if test="pageVo.sort !=null  and pageVo.order !=null">
+				order by
+				${pageVo.sort} ${pageVo.order}
+			</if>
+			<if test="pageVo.offset >=0  and pageVo.limit >0">
+				limit
+				#{pageVo.offset},#{pageVo.limit}
+			</if>
+		</if>
+	</select>
+
+	<!-- 查询总条数 -->
+	<select id="selectTotalRecord" parameterType="long" resultType="java.lang.Integer">
+		select count(*)
+		from web_msg
+		where 1=1
+		<include refid="where_sql"></include>
+	</select>
+
+	<!-- 根据id查询 -->
+	<select id="selectById" resultMap="WebMsgMap">
+		select
+		<include refid="columns"></include>
+		from web_msg
+		where msg_id=#{msgId}
+	</select>
+
+
+	<!-- 根据id 锁表查询 -->
+	<select id="selectForUpdate" resultMap="WebMsgMap">
+		select
+		<include refid="columns"></include>
+		from web_msg
+		where msg_id=#{msg_id}
+		for update
+	</select>
+
+
+
+	<!-- 根据对象查询 -->
+	<select id="selectByModel" resultMap="WebMsgMap">
+		select
+		<include refid="columns"></include>
+		from web_msg
+		where 1=1
+		<include refid="where_sql"></include>
+	</select>
+</mapper>

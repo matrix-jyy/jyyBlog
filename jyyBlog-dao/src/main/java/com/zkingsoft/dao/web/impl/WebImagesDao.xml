@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zkingsoft.dao.web.WebImagesDao">
+	<!-- 定义WebImages 的复杂关联map -->
+	<resultMap type="WebImages" id="WebImagesMap">
+			<id property="id" column="id" />
+			<result property="artId" column="art_id" />
+			<result property="name" column="name" />
+			<result property="path" column="path" />
+			<result property="time" column="time" />
+			<result property="info1" column="info1" />
+			<result property="info2" column="info2" />
+			<result property="info3" column="info3" />
+	</resultMap>
+	
+	
+	<!-- 定义WebImages 的简单map  ，本map不添加其他的关联属性 -->
+	<resultMap type="WebImages" id="WebImagesSimpleMap">
+			<id property="id" column="id" />
+			<result property="artId" column="art_id" />
+			<result property="name" column="name" />
+			<result property="path" column="path" />
+			<result property="time" column="time" />
+			<result property="info1" column="info1" />
+			<result property="info2" column="info2" />
+			<result property="info3" column="info3" />
+	</resultMap>
+	
+	<!-- 字段sql -->
+	<sql id="columns">
+			id,
+			art_id,
+			name,
+			path,
+			time,
+			info1,
+			info2,
+			info3
+	</sql>
+	
+	<!-- 属性sql -->
+	<sql id="propertys">
+			#{id},
+			#{artId},
+			#{name},
+			#{path},
+			#{time},
+			#{info1},
+			#{info2},
+			#{info3}
+	</sql>
+	
+	
+	<!-- 属性item.sql -->
+	<sql id="item_propertys">
+			#{item.id},
+			#{item.artId},
+			#{item.name},
+			#{item.path},
+			#{item.time},
+			#{item.info1},
+			#{item.info2},
+			#{item.info3}
+	</sql>
+	
+	
+	<!-- where sql -->
+	<sql id="where_sql">
+		 
+		 <if test="record!=null">
+			<if test="(record.id!=null and record.id!='') or  (record.id!='' and record.id==0)  ">
+				and id  = #{record.id} 
+			</if>
+			<if test="(record.artId!=null and record.artId!='') or  (record.artId!='' and record.artId==0)  ">
+				and art_id  = #{record.artId} 
+			</if>
+			<if test="(record.name!=null and record.name!='') or  (record.name!='' and record.name==0)  ">
+				and name  = #{record.name} 
+			</if>
+			<if test="(record.path!=null and record.path!='') or  (record.path!='' and record.path==0)  ">
+				and path  = #{record.path} 
+			</if>
+			<if test="(record.time!=null and record.time!='') or  (record.time!='' and record.time==0)  ">
+				and time  = #{record.time} 
+			</if>
+			<if test="(record.info1!=null and record.info1!='') or  (record.info1!='' and record.info1==0)  ">
+				and info1  = #{record.info1} 
+			</if>
+			<if test="(record.info2!=null and record.info2!='') or  (record.info2!='' and record.info2==0)  ">
+				and info2  = #{record.info2} 
+			</if>
+			<if test="(record.info3!=null and record.info3!='') or  (record.info3!='' and record.info3==0)  ">
+				and info3  = #{record.info3} 
+			</if>
+		</if>
+		 
+	</sql>
+	
+	<!--  插入方法   -->
+	<insert id="insert" parameterType="WebImages"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO web_images (
+			 <include refid="columns"></include>
+		)
+	VALUES (
+		 <include refid="propertys"></include>
+	)
+	</insert>
+	
+	
+	
+	<!--  批量插入   -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		INSERT INTO web_images (
+		<include refid="columns"></include>	
+		)
+	VALUES 
+	<foreach collection="list" item="item" index="index" separator=",">(
+		<include refid="item_propertys"></include>	
+	)</foreach>
+	</insert>
+	
+	
+	
+	
+	
+	<!--  根据Map更新 部分更新   -->
+	<update id="updateByMap" parameterType="java.util.HashMap" >
+		UPDATE web_images
+		<set>
+			<if test="_parameter.containsKey('artId')">
+					art_id = #{artId},
+				</if>		
+			<if test="_parameter.containsKey('name')">
+					name = #{name},
+				</if>		
+			<if test="_parameter.containsKey('path')">
+					path = #{path},
+				</if>		
+			<if test="_parameter.containsKey('time')">
+					time = #{time},
+				</if>		
+			<if test="_parameter.containsKey('info1')">
+					info1 = #{info1},
+				</if>		
+			<if test="_parameter.containsKey('info2')">
+					info2 = #{info2},
+				</if>		
+			<if test="_parameter.containsKey('info3')">
+					info3 = #{info3},
+				</if>		
+		</set>
+		WHERE id=#{id} 
+	</update> 
+	
+	
+	<!--  根据对象更新 部分更新   -->
+	<update id="updateByModel" parameterType="Long">
+		UPDATE web_images
+		<set>
+				<if test="(record.artId!=null and record.artId!='') or (record.artId!='' and record.artId==0)">
+					art_id = #{record.artId},
+				</if>		
+				<if test="(record.name!=null and record.name!='') or (record.name!='' and record.name==0)">
+					name = #{record.name},
+				</if>		
+				<if test="(record.path!=null and record.path!='') or (record.path!='' and record.path==0)">
+					path = #{record.path},
+				</if>		
+				<if test="(record.time!=null and record.time!='') or (record.time!='' and record.time==0)">
+					time = #{record.time},
+				</if>		
+				<if test="(record.info1!=null and record.info1!='') or (record.info1!='' and record.info1==0)">
+					info1 = #{record.info1},
+				</if>		
+				<if test="(record.info2!=null and record.info2!='') or (record.info2!='' and record.info2==0)">
+					info2 = #{record.info2},
+				</if>		
+				<if test="(record.info3!=null and record.info3!='') or (record.info3!='' and record.info3==0)">
+					info3 = #{record.info3},
+				</if>		
+		</set>
+		WHERE id=#{record.id} 
+	</update>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteByIds" parameterType="java.util.List">
+		delete from web_images where  id in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+		
+	<!-- 根据id删除-->
+	<delete id="deleteById" parameterType="Long">
+		DELETE FROM web_images
+		where  id=#{id} 
+	</delete>
+	
+	<!-- 根据对象删除-->
+	<delete id="deleteByModel" parameterType="Long">
+		DELETE FROM web_images
+		where 1=1
+		<include refid="where_sql" ></include>
+	</delete>
+	
+	
+	
+	<!-- 分页查询 -->
+	<select id="selectInPage" resultMap="WebImagesMap">
+		select 
+		<include refid="columns" ></include>
+		from web_images
+		where 1=1  <include refid="where_sql"></include>
+		<if test="pageVo !=null"><!-- 判断pageVo对象是否为空 -->
+			<if test="pageVo.sort !=null  and pageVo.order !=null">
+				order by
+				${pageVo.sort} ${pageVo.order}
+			</if>
+			<if test="pageVo.offset >=0  and pageVo.limit >0">
+				limit
+				#{pageVo.offset},#{pageVo.limit}
+			</if>
+		</if>
+	</select>
+	
+	<!-- 查询总条数 -->
+	<select id="selectTotalRecord" parameterType="long"   resultType="java.lang.Integer">
+	select count(*)
+	from web_images
+		where 1=1   <include refid="where_sql"></include>
+	</select>
+
+	<!-- 根据id查询-->
+	<select id="selectById" resultMap="WebImagesMap">
+		select 
+		<include refid="columns" ></include>
+		from web_images
+		where  id=#{id} 
+	</select>	
+	
+	
+	<!-- 根据id 锁表查询-->
+	<select id="selectForUpdate" resultMap="WebImagesMap">
+		select 
+		<include refid="columns" ></include>
+		from web_images
+		where  id=#{id} 
+		for update
+	</select>	
+	
+	
+	
+	<!-- 根据对象查询-->
+	<select id="selectByModel" resultMap="WebImagesMap">
+		select 
+		<include refid="columns" ></include>
+		from web_images
+		where 1=1  <include refid="where_sql"></include>
+	</select>
+</mapper>

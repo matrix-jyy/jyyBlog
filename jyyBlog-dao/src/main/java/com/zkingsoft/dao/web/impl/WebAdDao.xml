@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zkingsoft.dao.web.WebAdDao">
+	<!-- 定义WebAd 的复杂关联map -->
+	<resultMap type="WebAd" id="WebAdMap">
+			<id property="adId" column="ad_id" />
+			<result property="adColumn" column="ad_column" />
+			<result property="adTitle" column="ad_title" />
+			<result property="adUrl" column="ad_url" />
+			<result property="adTime" column="ad_time" />
+			<result property="adSequence" column="ad_sequence" />
+			<result property="adInfo1" column="ad_info1" />
+			<result property="adInfo2" column="ad_info2" />
+			<result property="adInfo3" column="ad_info3" />
+			<result property="adInfo4" column="ad_info4" />
+			<result property="adInfo5" column="ad_info5" />
+			<result property="adInfo6" column="ad_info6" />
+			<result property="adImg" column="ad_img" />
+			<result property="colName" column="colName" />
+			
+	</resultMap>
+	
+	
+	<!-- 定义WebAd 的简单map  ，本map不添加其他的关联属性 -->
+	<resultMap type="WebAd" id="WebAdSimpleMap">
+			<id property="adId" column="ad_id" />
+			<result property="adColumn" column="ad_column" />
+			<result property="adTitle" column="ad_title" />
+			<result property="adUrl" column="ad_url" />
+			<result property="adTime" column="ad_time" />
+			<result property="adSequence" column="ad_sequence" />
+			<result property="adInfo1" column="ad_info1" />
+			<result property="adInfo2" column="ad_info2" />
+			<result property="adInfo3" column="ad_info3" />
+			<result property="adInfo4" column="ad_info4" />
+			<result property="adInfo5" column="ad_info5" />
+			<result property="adInfo6" column="ad_info6" />
+	</resultMap>
+	
+	
+	
+	<!--  插入方法   -->
+	<insert id="insert" parameterType="WebAd"
+		useGeneratedKeys="true" keyProperty="adId">
+		INSERT INTO web_ad (
+			ad_id,
+			ad_column,
+			ad_title,
+			ad_url,
+			ad_time,
+			ad_sequence,
+			ad_info1,
+			ad_info2,
+			ad_info3,
+			ad_info4,
+			ad_info5,
+			ad_info6,
+			ad_img
+		)
+	VALUES (
+			#{adId},
+			#{adColumn},
+			#{adTitle},
+			#{adUrl},
+			#{adTime},
+			#{adSequence},
+			#{adInfo1},
+			#{adInfo2},
+			#{adInfo3},
+			#{adInfo4},
+			#{adInfo5},
+			#{adInfo6},
+			#{adImg}
+	)
+	</insert>
+	
+	
+	
+	<!--  批量插入   -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		INSERT INTO web_ad (
+			ad_id,
+			ad_column,
+			ad_title,
+			ad_url,
+			ad_time,
+			ad_sequence,
+			ad_info1,
+			ad_info2,
+			ad_info3,
+			ad_info4,
+			ad_info5,
+			ad_info6,
+			ad_img
+		)
+	VALUES 
+	<foreach collection="list" item="item" index="index" separator=",">(
+			#{item.adId},
+			#{item.adColumn},
+			#{item.adTitle},
+			#{item.adUrl},
+			#{item.adTime},
+			#{item.adSequence},
+			#{item.adInfo1},
+			#{item.adInfo2},
+			#{item.adInfo3},
+			#{item.adInfo4},
+			#{item.adInfo5},
+			#{item.adInfo6},
+			#{item.adImg}
+	)</foreach>
+	</insert>
+	
+	
+	
+	
+	
+	<!--  根据Map更新 部分更新   -->
+	<update id="updateByMap" parameterType="java.util.HashMap" >
+		UPDATE web_ad
+		<set>
+			<if test="_parameter.containsKey('adColumn')">
+					ad_column = #{adColumn},
+				</if>		
+			<if test="_parameter.containsKey('adTitle')">
+					ad_title = #{adTitle},
+				</if>		
+			<if test="_parameter.containsKey('adUrl')">
+					ad_url = #{adUrl},
+				</if>		
+			<if test="_parameter.containsKey('adTime')">
+					ad_time = #{adTime},
+				</if>		
+			<if test="_parameter.containsKey('adSequence')">
+					ad_sequence = #{adSequence},
+				</if>		
+			<if test="_parameter.containsKey('adInfo1')">
+					ad_info1 = #{adInfo1},
+				</if>		
+			<if test="_parameter.containsKey('adInfo2')">
+					ad_info2 = #{adInfo2},
+				</if>		
+			<if test="_parameter.containsKey('adInfo3')">
+					ad_info3 = #{adInfo3},
+				</if>		
+			<if test="_parameter.containsKey('adInfo4')">
+					ad_info4 = #{adInfo4},
+				</if>		
+			<if test="_parameter.containsKey('adInfo5')">
+					ad_info5 = #{adInfo5},
+				</if>		
+			<if test="_parameter.containsKey('adInfo6')">
+					ad_info6 = #{adInfo6},
+				</if>		
+			<if test="_parameter.containsKey('adImg')">
+					ad_img = #{adImg},
+				</if>		
+		</set>
+		WHERE ad_id=#{adId} 
+	</update>
+	
+	
+	
+	<!--  根据对象更新 部分更新   -->
+	<update id="updateByModel" parameterType="Long">
+		UPDATE web_ad
+		<set>
+				<if test="(adColumn!=null and adColumn!='') or (adColumn!='' and adColumn==0)">
+					ad_column = #{adColumn},
+				</if>		
+				<if test="(adTitle!=null and adTitle!='') or (adTitle!='' and adTitle==0)">
+					ad_title = #{adTitle},
+				</if>		
+				<if test="(adUrl!=null and adUrl!='') or (adUrl!='' and adUrl==0)">
+					ad_url = #{adUrl},
+				</if>		
+				<if test="(adTime!=null and adTime!='') or (adTime!='' and adTime==0)">
+					ad_time = #{adTime},
+				</if>		
+				<if test="(adSequence!=null and adSequence!='') or (adSequence!='' and adSequence==0)">
+					ad_sequence = #{adSequence},
+				</if>		
+				<if test="(adInfo1!=null and adInfo1!='') or (adInfo1!='' and adInfo1==0)">
+					ad_info1 = #{adInfo1},
+				</if>		
+				<if test="(adInfo2!=null and adInfo2!='') or (adInfo2!='' and adInfo2==0)">
+					ad_info2 = #{adInfo2},
+				</if>		
+				<if test="(adInfo3!=null and adInfo3!='') or (adInfo3!='' and adInfo3==0)">
+					ad_info3 = #{adInfo3},
+				</if>		
+				<if test="(adInfo4!=null and adInfo4!='') or (adInfo4!='' and adInfo4==0)">
+					ad_info4 = #{adInfo4},
+				</if>		
+				<if test="(adInfo5!=null and adInfo5!='') or (adInfo5!='' and adInfo5==0)">
+					ad_info5 = #{adInfo5},
+				</if>		
+				<if test="(adInfo6!=null and adInfo6!='') or (adInfo6!='' and adInfo6==0)">
+					ad_info6 = #{adInfo6},
+				</if>		
+				<if test="(adImg!=null and adImg!='') or (adImg!='' and adImg==0)">
+					ad_img = #{adImg},
+				</if>		
+		</set>
+		WHERE ad_id=#{adId} 
+	</update>
+	
+	
+	<!-- 批量删除 -->
+	<delete id="deleteByIds" parameterType="java.util.List">
+		delete from web_ad where  ad_id in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+		
+	<!-- 根据id删除-->
+	<delete id="deleteById" parameterType="Long">
+		DELETE FROM web_ad
+		where  ad_id=#{adId} 
+	</delete>
+	
+	<!-- 根据对象删除-->
+	<delete id="deleteByModel" parameterType="Long">
+		DELETE FROM web_ad
+		where 1=1
+		<if test="record!=null">
+			<if test="(record.adId!=null and record.adId!='') or (record.adId!='' and record.adId==0)">
+				and ad_id = #{record.adId} 
+			</if>
+			<if test="(record.adColumn!=null and record.adColumn!='') or (record.adColumn!='' and record.adColumn==0)">
+				and ad_column = #{record.adColumn} 
+			</if>
+			<if test="(record.adTitle!=null and record.adTitle!='') or (record.adTitle!='' and record.adTitle==0)">
+				and ad_title = #{record.adTitle} 
+			</if>
+			<if test="(record.adUrl!=null and record.adUrl!='') or (record.adUrl!='' and record.adUrl==0)">
+				and ad_url = #{record.adUrl} 
+			</if>
+			<if test="(record.adTime!=null and record.adTime!='') or (record.adTime!='' and record.adTime==0)">
+				and ad_time = #{record.adTime} 
+			</if>
+			<if test="(record.adSequence!=null and record.adSequence!='') or (record.adSequence!='' and record.adSequence==0)">
+				and ad_sequence = #{record.adSequence} 
+			</if>
+			<if test="(record.adInfo1!=null and record.adInfo1!='') or (record.adInfo1!='' and record.adInfo1==0)">
+				and ad_info1 = #{record.adInfo1} 
+			</if>
+			<if test="(record.adInfo2!=null and record.adInfo2!='') or (record.adInfo2!='' and record.adInfo2==0)">
+				and ad_info2 = #{record.adInfo2} 
+			</if>
+			<if test="(record.adInfo3!=null and record.adInfo3!='') or (record.adInfo3!='' and record.adInfo3==0)">
+				and ad_info3 = #{record.adInfo3} 
+			</if>
+			<if test="(record.adInfo4!=null and record.adInfo4!='') or (record.adInfo4!='' and record.adInfo4==0)">
+				and ad_info4 = #{record.adInfo4} 
+			</if>
+			<if test="(record.adInfo5!=null and record.adInfo5!='') or (record.adInfo5!='' and record.adInfo5==0)">
+				and ad_info5 = #{record.adInfo5} 
+			</if>
+			<if test="(record.adInfo6!=null and record.adInfo6!='') or (record.adInfo6!='' and record.adInfo6==0)">
+				and ad_info6 = #{record.adInfo6} 
+			</if>
+		</if>
+	</delete>
+	
+	
+	
+	<!-- 分页查询 -->
+	<select id="selectInPage" resultMap="WebAdMap">
+		select 
+			ad_id,
+			ad_column,
+			ad_title,
+			ad_url,
+			ad_time,
+			ad_sequence,
+			ad_info1,
+			ad_info2,
+			ad_info3,
+			ad_info4,
+			ad_info5,
+			ad_info6,
+			ad_img,
+			(select a.col_name from web_adcolumn a where a.col_id=ad_column)as colName
+		from web_ad 
+		where 1=1
+		<if test="record!=null">
+			<if test="(record.adId!=null and record.adId!='') or (record.adId!='' and record.adId==0)">
+				and ad_id  = #{record.adId} 
+			</if>
+			<if test="(record.adColumn!=null and record.adColumn!='') or (record.adColumn!='' and record.adColumn==0)">
+				and ad_column  = #{record.adColumn} 
+			</if>
+			<if test="(record.adTitle!=null and record.adTitle!='') or (record.adTitle!='' and record.adTitle==0)">
+				and ad_title like concat('%',#{record.adTitle},'%')  
+			</if>
+			<if test="(record.adUrl!=null and record.adUrl!='') or (record.adUrl!='' and record.adUrl==0)">
+				and ad_url  = #{record.adUrl} 
+			</if>
+			<if test="(record.adTime!=null and record.adTime!='') or (record.adTime!='' and record.adTime==0)">
+				and ad_time  = #{record.adTime} 
+			</if>
+			<if test="(record.adSequence!=null and record.adSequence!='') or (record.adSequence!='' and record.adSequence==0)">
+				and ad_sequence  = #{record.adSequence} 
+			</if>
+			<if test="(record.adInfo1!=null and record.adInfo1!='') or (record.adInfo1!='' and record.adInfo1==0)">
+				and ad_info1  = #{record.adInfo1} 
+			</if>
+			<if test="(record.adInfo2!=null and record.adInfo2!='') or (record.adInfo2!='' and record.adInfo2==0)">
+				and ad_info2  = #{record.adInfo2} 
+			</if>
+			<if test="(record.adInfo3!=null and record.adInfo3!='') or (record.adInfo3!='' and record.adInfo3==0)">
+				and ad_info3  = #{record.adInfo3} 
+			</if>
+			<if test="(record.adInfo4!=null and record.adInfo4!='') or (record.adInfo4!='' and record.adInfo4==0)">
+				and ad_info4  = #{record.adInfo4} 
+			</if>
+			<if test="(record.adInfo5!=null and record.adInfo5!='') or (record.adInfo5!='' and record.adInfo5==0)">
+				and ad_info5  = #{record.adInfo5} 
+			</if>
+			<if test="(record.adInfo6!=null and record.adInfo6!='') or (record.adInfo6!='' and record.adInfo6==0)">
+				and ad_info6  = #{record.adInfo6} 
+			</if>
+		</if>
+		<if test="pageVo !=null"><!-- 判断pageVo对象是否为空 -->
+			<if test="pageVo.sort !=null  and pageVo.order !=null">
+				ORDER BY ad_sequence , ad_time DESC
+			</if>
+			<if test="pageVo.offset >=0  and pageVo.limit >0">
+				limit
+				#{pageVo.offset},#{pageVo.limit}
+			</if>
+		</if>
+	</select>
+	
+	<!-- 查询总条数 -->
+	<select id="selectTotalRecord" parameterType="long"   resultType="java.lang.Integer">
+	select count(*)
+	from web_ad
+		where 1=1
+		<if test="record!=null">
+			<if test="(record.adId!=null and record.adId!='') or (record.adId!='' and record.adId==0)">
+			and ad_id = #{record.adId} 
+			</if>
+			<if test="(record.adColumn!=null and record.adColumn!='') or (record.adColumn!='' and record.adColumn==0)">
+			and ad_column = #{record.adColumn} 
+			</if>
+			<if test="(record.adTitle!=null and record.adTitle!='') or (record.adTitle!='' and record.adTitle==0)">
+			and ad_title like concat('%',#{record.adTitle},'%')  
+			</if>
+			<if test="(record.adUrl!=null and record.adUrl!='') or (record.adUrl!='' and record.adUrl==0)">
+			and ad_url = #{record.adUrl} 
+			</if>
+			<if test="(record.adTime!=null and record.adTime!='') or (record.adTime!='' and record.adTime==0)">
+			and ad_time = #{record.adTime} 
+			</if>
+			<if test="(record.adSequence!=null and record.adSequence!='') or (record.adSequence!='' and record.adSequence==0)">
+			and ad_sequence = #{record.adSequence} 
+			</if>
+			<if test="(record.adInfo1!=null and record.adInfo1!='') or (record.adInfo1!='' and record.adInfo1==0)">
+			and ad_info1 = #{record.adInfo1} 
+			</if>
+			<if test="(record.adInfo2!=null and record.adInfo2!='') or (record.adInfo2!='' and record.adInfo2==0)">
+			and ad_info2 = #{record.adInfo2} 
+			</if>
+			<if test="(record.adInfo3!=null and record.adInfo3!='') or (record.adInfo3!='' and record.adInfo3==0)">
+			and ad_info3 = #{record.adInfo3} 
+			</if>
+			<if test="(record.adInfo4!=null and record.adInfo4!='') or (record.adInfo4!='' and record.adInfo4==0)">
+			and ad_info4 = #{record.adInfo4} 
+			</if>
+			<if test="(record.adInfo5!=null and record.adInfo5!='') or (record.adInfo5!='' and record.adInfo5==0)">
+			and ad_info5 = #{record.adInfo5} 
+			</if>
+			<if test="(record.adInfo6!=null and record.adInfo6!='') or (record.adInfo6!='' and record.adInfo6==0)">
+			and ad_info6 = #{record.adInfo6} 
+			</if>
+		</if>
+	</select>
+
+	<!-- 根据id查询-->
+	<select id="selectById" resultMap="WebAdMap">
+		select 
+			ad_id,
+			ad_column,
+			ad_title,
+			ad_url,
+			ad_time,
+			ad_sequence,
+			ad_info1,
+			ad_info2,
+			ad_info3,
+			ad_info4,
+			ad_info5,
+			ad_info6,
+			ad_img,
+			(select a.col_name from web_adcolumn a where a.col_id=ad_column)as colName
+		from web_ad
+		where  ad_id=#{adId} 
+	</select>	
+	
+	
+	<!-- 根据id 锁表查询-->
+	<select id="selectForUpdate" resultMap="WebAdMap">
+		select 
+			ad_id,
+			ad_column,
+			ad_title,
+			ad_url,
+			ad_time,
+			ad_sequence,
+			ad_info1,
+			ad_info2,
+			ad_info3,
+			ad_info4,
+			ad_info5,
+			ad_info6,
+			ad_img,
+			(select a.col_name from web_adcolumn a where a.col_id=ad_column)as colName
+		from web_ad
+		where  ad_id=#{ad_id} 
+		for update
+	</select>	
+	
+	
+	
+	<!-- 根据对象查询-->
+	<select id="selectByModel" resultMap="WebAdMap">
+		select 
+			ad_id,
+			ad_column,
+			ad_title,
+			ad_url,
+			ad_time,
+			ad_sequence,
+			ad_info1,
+			ad_info2,
+			ad_info3,
+			ad_info4,
+			ad_info5,
+			ad_info6,
+			ad_img,
+			(select a.col_name from web_adcolumn a where a.col_id=ad_column)as colName
+		from web_ad
+		where 1=1
+		<if test="record!=null">
+			<if test="(record.adId!=null and record.adId!='') or (record.adId!='' and record.adId==0)">
+				and ad_id = #{record.adId} 
+			</if>
+			<if test="(record.adColumn!=null and record.adColumn!='') or (record.adColumn!='' and record.adColumn==0)">
+				and ad_column = #{record.adColumn} 
+			</if>
+			<if test="(record.adTitle!=null and record.adTitle!='') or (record.adTitle!='' and record.adTitle==0)">
+				and ad_title like concat('%',#{record.adTitle},'%')  
+			</if>
+			<if test="(record.adUrl!=null and record.adUrl!='') or (record.adUrl!='' and record.adUrl==0)">
+				and ad_url = #{record.adUrl} 
+			</if>
+			<if test="(record.adTime!=null and record.adTime!='') or (record.adTime!='' and record.adTime==0)">
+				and ad_time = #{record.adTime} 
+			</if>
+			<if test="(record.adSequence!=null and record.adSequence!='') or (record.adSequence!='' and record.adSequence==0)">
+				and ad_sequence = #{record.adSequence} 
+			</if>
+			<if test="(record.adInfo1!=null and record.adInfo1!='') or (record.adInfo1!='' and record.adInfo1==0)">
+				and ad_info1 = #{record.adInfo1} 
+			</if>
+			<if test="(record.adInfo2!=null and record.adInfo2!='') or (record.adInfo2!='' and record.adInfo2==0)">
+				and ad_info2 = #{record.adInfo2} 
+			</if>
+			<if test="(record.adInfo3!=null and record.adInfo3!='') or (record.adInfo3!='' and record.adInfo3==0)">
+				and ad_info3 = #{record.adInfo3} 
+			</if>
+			<if test="(record.adInfo4!=null and record.adInfo4!='') or (record.adInfo4!='' and record.adInfo4==0)">
+				and ad_info4 = #{record.adInfo4} 
+			</if>
+			<if test="(record.adInfo5!=null and record.adInfo5!='') or (record.adInfo5!='' and record.adInfo5==0)">
+				and ad_info5 = #{record.adInfo5} 
+			</if>
+			<if test="(record.adInfo6!=null and record.adInfo6!='') or (record.adInfo6!='' and record.adInfo6==0)">
+				and ad_info6 = #{record.adInfo6} 
+			</if>
+		</if>
+		ORDER BY ad_sequence , ad_time DESC
+	</select>
+	
+	
+	<select id="selectAdByCloCode" resultMap="WebAdMap">
+		SELECT a.*,
+		(select a.col_name from web_adcolumn a where a.col_id=ad_column)as colName
+		 from
+		web_ad a
+		LEFT JOIN web_adcolumn b on a.ad_column=b.col_id
+		WHERE b.code=#{code}
+		ORDER BY a.ad_sequence,a.ad_time DESC
+		LIMIT 0,#{capacity}
+	</select>
+	
+</mapper>

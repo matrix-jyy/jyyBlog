@@ -1,0 +1,232 @@
+html {
+	width: 100%
+}
+
+body {
+	font-family: -apple-system, SF UI Display, Arial, PingFang SC,
+		Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+	font-size: 14px;
+	overflow-x: hidden;
+	width: 100%;
+	line-height: 32px;
+	font-weight: 350px;
+}
+
+a {
+	color: #000;
+}
+
+a:HOVER {
+	color: #ea6f5a;
+}
+
+ul li {
+	list-style: none;
+}
+
+ul, div, h3, h2, h4, p {
+	padding: 0;
+	margin: 0;
+}
+
+a:hover, a:focus, a:visited {
+	text-decoration: none;
+}
+
+.carousel-inner>.item {
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+/*导航*/
+.navbar-top {
+	position: relative;
+	background: #FFFFFF;
+	height: 60px;
+}
+
+.search {
+	line-height: 50px;
+	float: right !important;
+}
+
+.search:HOVER {
+	background: none !important;
+}
+
+.navbar {
+	border: 1px solid #efefef;
+	box-shadow: 0 10px 10px -10px #ccc;
+	margin-bottom: 5px;
+	z-index: 9999;
+	overflow: hidden;
+}
+
+.navbar-top .navbar-header {
+	width: 250px;
+	float: left;
+}
+
+.navbar-top .navbar-header img {
+	height: 60px;
+}
+
+.btn-collapse {
+	margin-top: 36px;
+}
+
+.navbar-header>h2 {
+	height: 60px;
+	line-height: 60px;
+}
+
+.nav-item {
+	position: relative;
+	overflow: hidden;
+}
+
+.nav-item li {
+	float: left;
+	padding: 0 5px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 17px;
+	cursor: pointer;
+}
+
+.nav-item li a {
+	padding: 0 4px;
+	height: 60px;
+	line-height: 60px;
+	display: block;
+	width: 100px;
+	color: #000;
+}
+
+.nav-item .active  a {
+	color: #ea6f5a !important;
+}
+
+.nav-item li:hover {
+	background: #efefef;
+	color: #ea6f5a;
+}
+
+.carousel-control.right, .carousel-control.left {
+	background: transparent
+}
+
+.carousel-indicators li {
+	background-color: #39325e;
+	border: 0px;
+}
+
+.carousel-indicators li.active {
+	background: rgb(101, 88, 167)
+}
+
+/*底部*/
+.footer-txt {
+	height: 140px;
+	line-height: 40px;
+	color: #000;
+	padding-top: 20px;
+}
+
+.title {
+	display: inherit;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 40px;
+}
+
+.color_title {
+	display: inherit;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 40px;
+	color: #42b983;
+	border-left: 2px #42b983 solid;
+	padding-left: 20px;
+	line-height: 25px;
+}
+
+.panel-default>.panel-heading {
+	background: #fff;
+	color: #42b983;
+}
+
+.content1 {
+	margin-top: 40px;
+}
+
+.artLine {
+	position: relative;
+	width: 100%;
+	margin: 0 0 17px;
+	padding: 0 2px 17px 0;
+	border-bottom: 1px solid #f0f0f0;
+	word-wrap: break-word;
+	line-height: 20px;
+}
+
+.abstract {
+	margin: 0 0 8px;
+	line-height: 24px;
+	margin-bottom: 20px;
+	color: #666;
+}
+
+.meta {
+	padding-right: 0 !important;
+	font-weight: 400;
+	line-height: 20px;
+	float: right;
+}
+
+.meta span {
+	margin-right: 10px;
+	color: #b4b4b4;
+	font-family: Georgia;
+}
+
+.artTop a {
+	width: 80%;
+	float: left;
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 35px;
+}
+
+.artTop span {
+	margin-right: 10px;
+	color: #b4b4b4;
+	font-family: Georgia;
+	float: right;
+	line-height: 35px;
+}
+
+.copyright{
+	color: #b4b4b4;
+	font-family: Georgia;
+	line-height: 35px;
+}
+
+
+
+.footer-txt p {
+	line-height: 35px;
+}
+
+.artmate{
+	    margin-right: 14px;
+    color: #b4b4b4;
+    font-family: Georgia;
+    line-height: 60px;
+}
+
+
+
+

@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zkingsoft.dao.bus.BusCformDao">
+	<!-- 定义BusCform 的复杂关联map -->
+	<resultMap type="BusCform" id="BusCformMap">
+			<id property="cfId" column="cfId" />
+			<result property="cf1" column="cf1" />
+			<result property="cf2" column="cf2" />
+			<result property="cf3" column="cf3" />
+			<result property="cf4" column="cf4" />
+			<result property="cf5" column="cf5" />
+			<result property="cf6" column="cf6" />
+			<result property="cf7" column="cf7" />
+			<result property="cf8" column="cf8" />
+			<result property="cf9" column="cf9" />
+			<result property="cf10" column="cf10" />
+			<result property="cf11" column="cf11" />
+			<result property="cf12" column="cf12" />
+			<result property="cf13" column="cf13" />
+			<result property="cf14" column="cf14" />
+			<result property="cf15" column="cf15" />
+			<result property="cf16" column="cf16" />
+			<result property="cf17" column="cf17" />
+			<result property="cf18" column="cf18" />
+			<result property="cf19" column="cf19" />
+			<result property="cf20" column="cf20" />
+	</resultMap>
+	
+	
+	<!-- 定义BusCform 的简单map  ，本map不添加其他的关联属性 -->
+	<resultMap type="BusCform" id="BusCformSimpleMap">
+			<id property="cfId" column="cfId" />
+			<result property="cf1" column="cf1" />
+			<result property="cf2" column="cf2" />
+			<result property="cf3" column="cf3" />
+			<result property="cf4" column="cf4" />
+			<result property="cf5" column="cf5" />
+			<result property="cf6" column="cf6" />
+			<result property="cf7" column="cf7" />
+			<result property="cf8" column="cf8" />
+			<result property="cf9" column="cf9" />
+			<result property="cf10" column="cf10" />
+			<result property="cf11" column="cf11" />
+			<result property="cf12" column="cf12" />
+			<result property="cf13" column="cf13" />
+			<result property="cf14" column="cf14" />
+			<result property="cf15" column="cf15" />
+			<result property="cf16" column="cf16" />
+			<result property="cf17" column="cf17" />
+			<result property="cf18" column="cf18" />
+			<result property="cf19" column="cf19" />
+			<result property="cf20" column="cf20" />
+	</resultMap>
+	
+	
+	
+	<!--  插入方法   -->
+	<insert id="insert" parameterType="BusCform"
+		useGeneratedKeys="true" keyProperty="cfId">
+		INSERT INTO bus_cform (
+			cfId,
+			cf1,
+			cf2,
+			cf3,
+			cf4,
+			cf5,
+			cf6,
+			cf7,
+			cf8,
+			cf9,
+			cf10,
+			cf11,
+			cf12,
+			cf13,
+			cf14,
+			cf15,
+			cf16,
+			cf17,
+			cf18,
+			cf19,
+			cf20
+		)
+	VALUES (
+			#{cfId},
+			#{cf1},
+			#{cf2},
+			#{cf3},
+			#{cf4},
+			#{cf5},
+			#{cf6},
+			#{cf7},
+			#{cf8},
+			#{cf9},
+			#{cf10},
+			#{cf11},
+			#{cf12},
+			#{cf13},
+			#{cf14},
+			#{cf15},
+			#{cf16},
+			#{cf17},
+			#{cf18},
+			#{cf19},
+			#{cf20}
+	)
+	</insert>
+	
+	
+	
+	<!--  批量插入   -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		INSERT INTO bus_cform (
+			cfId,
+			cf1,
+			cf2,
+			cf3,
+			cf4,
+			cf5,
+			cf6,
+			cf7,
+			cf8,
+			cf9,
+			cf10,
+			cf11,
+			cf12,
+			cf13,
+			cf14,
+			cf15,
+			cf16,
+			cf17,
+			cf18,
+			cf19,
+			cf20
+		)
+	VALUES 
+	<foreach collection="list" item="item" index="index" separator=",">(
+			#{item.cfId},
+			#{item.cf1},
+			#{item.cf2},
+			#{item.cf3},
+			#{item.cf4},
+			#{item.cf5},
+			#{item.cf6},
+			#{item.cf7},
+			#{item.cf8},
+			#{item.cf9},
+			#{item.cf10},
+			#{item.cf11},
+			#{item.cf12},
+			#{item.cf13},
+			#{item.cf14},
+			#{item.cf15},
+			#{item.cf16},
+			#{item.cf17},
+			#{item.cf18},
+			#{item.cf19},
+			#{item.cf20}
+	)</foreach>
+	</insert>
+	
+	
+	
+	
+	
+	<!--  根据Map更新 部分更新   -->
+	<update id="updateByMap" parameterType="java.util.HashMap" >
+		UPDATE bus_cform
+		<set>
+			<if test="_parameter.containsKey('cf1')">
+					cf1 = #{cf1},
+				</if>		
+			<if test="_parameter.containsKey('cf2')">
+					cf2 = #{cf2},
+				</if>		
+			<if test="_parameter.containsKey('cf3')">
+					cf3 = #{cf3},
+				</if>		
+			<if test="_parameter.containsKey('cf4')">
+					cf4 = #{cf4},
+				</if>		
+			<if test="_parameter.containsKey('cf5')">
+					cf5 = #{cf5},
+				</if>		
+			<if test="_parameter.containsKey('cf6')">
+					cf6 = #{cf6},
+				</if>		
+			<if test="_parameter.containsKey('cf7')">
+					cf7 = #{cf7},
+				</if>		
+			<if test="_parameter.containsKey('cf8')">
+					cf8 = #{cf8},
+				</if>		
+			<if test="_parameter.containsKey('cf9')">
+					cf9 = #{cf9},
+				</if>		
+			<if test="_parameter.containsKey('cf10')">
+					cf10 = #{cf10},
+				</if>		
+			<if test="_parameter.containsKey('cf11')">
+					cf11 = #{cf11},
+				</if>		
+			<if test="_parameter.containsKey('cf12')">
+					cf12 = #{cf12},
+				</if>		
+			<if test="_parameter.containsKey('cf13')">
+					cf13 = #{cf13},
+				</if>		
+			<if test="_parameter.containsKey('cf14')">
+					cf14 = #{cf14},
+				</if>		
+			<if test="_parameter.containsKey('cf15')">
+					cf15 = #{cf15},
+				</if>		
+			<if test="_parameter.containsKey('cf16')">
+					cf16 = #{cf16},
+				</if>		
+			<if test="_parameter.containsKey('cf17')">
+					cf17 = #{cf17},
+				</if>		
+			<if test="_parameter.containsKey('cf18')">
+					cf18 = #{cf18},
+				</if>		
+			<if test="_parameter.containsKey('cf19')">
+					cf19 = #{cf19},
+				</if>		
+			<if test="_parameter.containsKey('cf20')">
+					cf20 = #{cf20},
+				</if>		
+		</set>
+		WHERE cfId=#{cfId} 
+	</update>
+	
+	
+	
+	<!--  根据对象更新 部分更新   -->
+	<update id="updateByModel" parameterType="Long">
+		UPDATE bus_cform
+		<set>
+				<if test="(cf1!=null and cf1!='') or (cf1!='' and cf1==0)">
+					cf1 = #{cf1},
+				</if>		
+				<if test="(cf2!=null and cf2!='') or (cf2!='' and cf2==0)">
+					cf2 = #{cf2},
+				</if>		
+				<if test="(cf3!=null and cf3!='') or (cf3!='' and cf3==0)">
+					cf3 = #{cf3},
+				</if>		
+				<if test="(cf4!=null and cf4!='') or (cf4!='' and cf4==0)">
+					cf4 = #{cf4},
+				</if>		
+				<if test="(cf5!=null and cf5!='') or (cf5!='' and cf5==0)">
+					cf5 = #{cf5},
+				</if>		
+				<if test="(cf6!=null and cf6!='') or (cf6!='' and cf6==0)">
+					cf6 = #{cf6},
+				</if>		
+				<if test="(cf7!=null and cf7!='') or (cf7!='' and cf7==0)">
+					cf7 = #{cf7},
+				</if>		
+				<if test="(cf8!=null and cf8!='') or (cf8!='' and cf8==0)">
+					cf8 = #{cf8},
+				</if>		
+				<if test="(cf9!=null and cf9!='') or (cf9!='' and cf9==0)">
+					cf9 = #{cf9},
+				</if>		
+				<if test="(cf10!=null and cf10!='') or (cf10!='' and cf10==0)">
+					cf10 = #{cf10},
+				</if>		
+				<if test="(cf11!=null and cf11!='') or (cf11!='' and cf11==0)">
+					cf11 = #{cf11},
+				</if>		
+				<if test="(cf12!=null and cf12!='') or (cf12!='' and cf12==0)">
+					cf12 = #{cf12},
+				</if>		
+				<if test="(cf13!=null and cf13!='') or (cf13!='' and cf13==0)">
+					cf13 = #{cf13},
+				</if>		
+				<if test="(cf14!=null and cf14!='') or (cf14!='' and cf14==0)">
+					cf14 = #{cf14},
+				</if>		
+				<if test="(cf15!=null and cf15!='') or (cf15!='' and cf15==0)">
+					cf15 = #{cf15},
+				</if>		
+				<if test="(cf16!=null and cf16!='') or (cf16!='' and cf16==0)">
+					cf16 = #{cf16},
+				</if>		
+				<if test="(cf17!=null and cf17!='') or (cf17!='' and cf17==0)">
+					cf17 = #{cf17},
+				</if>		
+				<if test="(cf18!=null and cf18!='') or (cf18!='' and cf18==0)">
+					cf18 = #{cf18},
+				</if>		
+				<if test="(cf19!=null and cf19!='') or (cf19!='' and cf19==0)">
+					cf19 = #{cf19},
+				</if>		
+				<if test="(cf20!=null and cf20!='') or (cf20!='' and cf20==0)">
+					cf20 = #{cf20},
+				</if>		
+		</set>
+		WHERE cfId=#{cfId} 
+	</update>
+	
+	
+	<!-- 批量删除 -->
+	<delete id="deleteByIds" parameterType="java.util.List">
+		delete from bus_cform where  cfId in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+		
+	<!-- 根据id删除-->
+	<delete id="deleteById" parameterType="Long">
+		DELETE FROM bus_cform
+		where  cfId=#{cfId} 
+	</delete>
+	
+	<!-- 根据对象删除-->
+	<delete id="deleteByModel" parameterType="Long">
+		DELETE FROM bus_cform
+		where 1=1
+		<if test="record!=null">
+			<if test="(record.cfId!=null and record.cfId!='') or (record.cfId!='' and record.cfId==0)">
+				and cfId = #{record.cfId} 
+			</if>
+			<if test="(record.cf1!=null and record.cf1!='') or (record.cf1!='' and record.cf1==0)">
+				and cf1 = #{record.cf1} 
+			</if>
+			<if test="(record.cf2!=null and record.cf2!='') or (record.cf2!='' and record.cf2==0)">
+				and cf2 = #{record.cf2} 
+			</if>
+			<if test="(record.cf3!=null and record.cf3!='') or (record.cf3!='' and record.cf3==0)">
+				and cf3 = #{record.cf3} 
+			</if>
+			<if test="(record.cf4!=null and record.cf4!='') or (record.cf4!='' and record.cf4==0)">
+				and cf4 = #{record.cf4} 
+			</if>
+			<if test="(record.cf5!=null and record.cf5!='') or (record.cf5!='' and record.cf5==0)">
+				and cf5 = #{record.cf5} 
+			</if>
+			<if test="(record.cf6!=null and record.cf6!='') or (record.cf6!='' and record.cf6==0)">
+				and cf6 = #{record.cf6} 
+			</if>
+			<if test="(record.cf7!=null and record.cf7!='') or (record.cf7!='' and record.cf7==0)">
+				and cf7 = #{record.cf7} 
+			</if>
+			<if test="(record.cf8!=null and record.cf8!='') or (record.cf8!='' and record.cf8==0)">
+				and cf8 = #{record.cf8} 
+			</if>
+			<if test="(record.cf9!=null and record.cf9!='') or (record.cf9!='' and record.cf9==0)">
+				and cf9 = #{record.cf9} 
+			</if>
+			<if test="(record.cf10!=null and record.cf10!='') or (record.cf10!='' and record.cf10==0)">
+				and cf10 = #{record.cf10} 
+			</if>
+			<if test="(record.cf11!=null and record.cf11!='') or (record.cf11!='' and record.cf11==0)">
+				and cf11 = #{record.cf11} 
+			</if>
+			<if test="(record.cf12!=null and record.cf12!='') or (record.cf12!='' and record.cf12==0)">
+				and cf12 = #{record.cf12} 
+			</if>
+			<if test="(record.cf13!=null and record.cf13!='') or (record.cf13!='' and record.cf13==0)">
+				and cf13 = #{record.cf13} 
+			</if>
+			<if test="(record.cf14!=null and record.cf14!='') or (record.cf14!='' and record.cf14==0)">
+				and cf14 = #{record.cf14} 
+			</if>
+			<if test="(record.cf15!=null and record.cf15!='') or (record.cf15!='' and record.cf15==0)">
+				and cf15 = #{record.cf15} 
+			</if>
+			<if test="(record.cf16!=null and record.cf16!='') or (record.cf16!='' and record.cf16==0)">
+				and cf16 = #{record.cf16} 
+			</if>
+			<if test="(record.cf17!=null and record.cf17!='') or (record.cf17!='' and record.cf17==0)">
+				and cf17 = #{record.cf17} 
+			</if>
+			<if test="(record.cf18!=null and record.cf18!='') or (record.cf18!='' and record.cf18==0)">
+				and cf18 = #{record.cf18} 
+			</if>
+			<if test="(record.cf19!=null and record.cf19!='') or (record.cf19!='' and record.cf19==0)">
+				and cf19 = #{record.cf19} 
+			</if>
+			<if test="(record.cf20!=null and record.cf20!='') or (record.cf20!='' and record.cf20==0)">
+				and cf20 = #{record.cf20} 
+			</if>
+		</if>
+	</delete>
+	
+	
+	
+	<!-- 分页查询 -->
+	<select id="selectInPage" resultMap="BusCformMap">
+		select 
+			cfId,
+			cf1,
+			cf2,
+			cf3,
+			cf4,
+			cf5,
+			cf6,
+			cf7,
+			cf8,
+			cf9,
+			cf10,
+			cf11,
+			cf12,
+			cf13,
+			cf14,
+			cf15,
+			cf16,
+			cf17,
+			cf18,
+			cf19,
+			cf20
+		from bus_cform
+		where 1=1
+		<if test="record!=null">
+			<if test="(record.cfId!=null and record.cfId!='') or (record.cfId!='' and record.cfId==0)">
+				and cfId  = #{record.cfId} 
+			</if>
+			<if test="(record.cf1!=null and record.cf1!='') or (record.cf1!='' and record.cf1==0)">
+				and cf1  = #{record.cf1} 
+			</if>
+			<if test="(record.cf2!=null and record.cf2!='') or (record.cf2!='' and record.cf2==0)">
+				and cf2  = #{record.cf2} 
+			</if>
+			<if test="(record.cf3!=null and record.cf3!='') or (record.cf3!='' and record.cf3==0)">
+				and cf3  = #{record.cf3} 
+			</if>
+			<if test="(record.cf4!=null and record.cf4!='') or (record.cf4!='' and record.cf4==0)">
+				and cf4  = #{record.cf4} 
+			</if>
+			<if test="(record.cf5!=null and record.cf5!='') or (record.cf5!='' and record.cf5==0)">
+				and cf5  = #{record.cf5} 
+			</if>
+			<if test="(record.cf6!=null and record.cf6!='') or (record.cf6!='' and record.cf6==0)">
+				and cf6  = #{record.cf6} 
+			</if>
+			<if test="(record.cf7!=null and record.cf7!='') or (record.cf7!='' and record.cf7==0)">
+				and cf7  = #{record.cf7} 
+			</if>
+			<if test="(record.cf8!=null and record.cf8!='') or (record.cf8!='' and record.cf8==0)">
+				and cf8  = #{record.cf8} 
+			</if>
+			<if test="(record.cf9!=null and record.cf9!='') or (record.cf9!='' and record.cf9==0)">
+				and cf9  = #{record.cf9} 
+			</if>
+			<if test="(record.cf10!=null and record.cf10!='') or (record.cf10!='' and record.cf10==0)">
+				and cf10  = #{record.cf10} 
+			</if>
+			<if test="(record.cf11!=null and record.cf11!='') or (record.cf11!='' and record.cf11==0)">
+				and cf11  = #{record.cf11} 
+			</if>
+			<if test="(record.cf12!=null and record.cf12!='') or (record.cf12!='' and record.cf12==0)">
+				and cf12  = #{record.cf12} 
+			</if>
+			<if test="(record.cf13!=null and record.cf13!='') or (record.cf13!='' and record.cf13==0)">
+				and cf13  = #{record.cf13} 
+			</if>
+			<if test="(record.cf14!=null and record.cf14!='') or (record.cf14!='' and record.cf14==0)">
+				and cf14  = #{record.cf14} 
+			</if>
+			<if test="(record.cf15!=null and record.cf15!='') or (record.cf15!='' and record.cf15==0)">
+				and cf15  = #{record.cf15} 
+			</if>
+			<if test="(record.cf16!=null and record.cf16!='') or (record.cf16!='' and record.cf16==0)">
+				and cf16  = #{record.cf16} 
+			</if>
+			<if test="(record.cf17!=null and record.cf17!='') or (record.cf17!='' and record.cf17==0)">
+				and cf17  = #{record.cf17} 
+			</if>
+			<if test="(record.cf18!=null and record.cf18!='') or (record.cf18!='' and record.cf18==0)">
+				and cf18  = #{record.cf18} 
+			</if>
+			<if test="(record.cf19!=null and record.cf19!='') or (record.cf19!='' and record.cf19==0)">
+				and cf19  = #{record.cf19} 
+			</if>
+			<if test="(record.cf20!=null and record.cf20!='') or (record.cf20!='' and record.cf20==0)">
+				and cf20  = #{record.cf20} 
+			</if>
+		</if>
+		<if test="pageVo !=null"><!-- 判断pageVo对象是否为空 -->
+			<if test="pageVo.sort !=null  and pageVo.order !=null">
+				order by
+				${pageVo.sort} ${pageVo.order}
+			</if>
+			<if test="pageVo.offset >=0  and pageVo.limit >0">
+				limit
+				#{pageVo.offset},#{pageVo.limit}
+			</if>
+		</if>
+	</select>
+	
+	<!-- 查询总条数 -->
+	<select id="selectTotalRecord" parameterType="long"   resultType="java.lang.Integer">
+	select count(*)
+	from bus_cform
+		where 1=1
+		<if test="record!=null">
+			<if test="(record.cfId!=null and record.cfId!='') or (record.cfId!='' and record.cfId==0)">
+			and cfId = #{record.cfId} 
+			</if>
+			<if test="(record.cf1!=null and record.cf1!='') or (record.cf1!='' and record.cf1==0)">
+			and cf1 = #{record.cf1} 
+			</if>
+			<if test="(record.cf2!=null and record.cf2!='') or (record.cf2!='' and record.cf2==0)">
+			and cf2 = #{record.cf2} 
+			</if>
+			<if test="(record.cf3!=null and record.cf3!='') or (record.cf3!='' and record.cf3==0)">
+			and cf3 = #{record.cf3} 
+			</if>
+			<if test="(record.cf4!=null and record.cf4!='') or (record.cf4!='' and record.cf4==0)">
+			and cf4 = #{record.cf4} 
+			</if>
+			<if test="(record.cf5!=null and record.cf5!='') or (record.cf5!='' and record.cf5==0)">
+			and cf5 = #{record.cf5} 
+			</if>
+			<if test="(record.cf6!=null and record.cf6!='') or (record.cf6!='' and record.cf6==0)">
+			and cf6 = #{record.cf6} 
+			</if>
+			<if test="(record.cf7!=null and record.cf7!='') or (record.cf7!='' and record.cf7==0)">
+			and cf7 = #{record.cf7} 
+			</if>
+			<if test="(record.cf8!=null and record.cf8!='') or (record.cf8!='' and record.cf8==0)">
+			and cf8 = #{record.cf8} 
+			</if>
+			<if test="(record.cf9!=null and record.cf9!='') or (record.cf9!='' and record.cf9==0)">
+			and cf9 = #{record.cf9} 
+			</if>
+			<if test="(record.cf10!=null and record.cf10!='') or (record.cf10!='' and record.cf10==0)">
+			and cf10 = #{record.cf10} 
+			</if>
+			<if test="(record.cf11!=null and record.cf11!='') or (record.cf11!='' and record.cf11==0)">
+			and cf11 = #{record.cf11} 
+			</if>
+			<if test="(record.cf12!=null and record.cf12!='') or (record.cf12!='' and record.cf12==0)">
+			and cf12 = #{record.cf12} 
+			</if>
+			<if test="(record.cf13!=null and record.cf13!='') or (record.cf13!='' and record.cf13==0)">
+			and cf13 = #{record.cf13} 
+			</if>
+			<if test="(record.cf14!=null and record.cf14!='') or (record.cf14!='' and record.cf14==0)">
+			and cf14 = #{record.cf14} 
+			</if>
+			<if test="(record.cf15!=null and record.cf15!='') or (record.cf15!='' and record.cf15==0)">
+			and cf15 = #{record.cf15} 
+			</if>
+			<if test="(record.cf16!=null and record.cf16!='') or (record.cf16!='' and record.cf16==0)">
+			and cf16 = #{record.cf16} 
+			</if>
+			<if test="(record.cf17!=null and record.cf17!='') or (record.cf17!='' and record.cf17==0)">
+			and cf17 = #{record.cf17} 
+			</if>
+			<if test="(record.cf18!=null and record.cf18!='') or (record.cf18!='' and record.cf18==0)">
+			and cf18 = #{record.cf18} 
+			</if>
+			<if test="(record.cf19!=null and record.cf19!='') or (record.cf19!='' and record.cf19==0)">
+			and cf19 = #{record.cf19} 
+			</if>
+			<if test="(record.cf20!=null and record.cf20!='') or (record.cf20!='' and record.cf20==0)">
+			and cf20 = #{record.cf20} 
+			</if>
+		</if>
+	</select>
+
+	<!-- 根据id查询-->
+	<select id="selectById" resultMap="BusCformMap">
+		select 
+			cfId,
+			cf1,
+			cf2,
+			cf3,
+			cf4,
+			cf5,
+			cf6,
+			cf7,
+			cf8,
+			cf9,
+			cf10,
+			cf11,
+			cf12,
+			cf13,
+			cf14,
+			cf15,
+			cf16,
+			cf17,
+			cf18,
+			cf19,
+			cf20
+		from bus_cform
+		where  cfId=#{cfId} 
+	</select>	
+	
+	
+	<!-- 根据id 锁表查询-->
+	<select id="selectForUpdate" resultMap="BusCformMap">
+		select 
+			cfId,
+			cf1,
+			cf2,
+			cf3,
+			cf4,
+			cf5,
+			cf6,
+			cf7,
+			cf8,
+			cf9,
+			cf10,
+			cf11,
+			cf12,
+			cf13,
+			cf14,
+			cf15,
+			cf16,
+			cf17,
+			cf18,
+			cf19,
+			cf20
+		from bus_cform
+		where  cfId=#{cfId} 
+		for update
+	</select>	
+	
+	
+	
+	<!-- 根据对象查询-->
+	<select id="selectByModel" resultMap="BusCformMap">
+		select 
+			cfId,
+			cf1,
+			cf2,
+			cf3,
+			cf4,
+			cf5,
+			cf6,
+			cf7,
+			cf8,
+			cf9,
+			cf10,
+			cf11,
+			cf12,
+			cf13,
+			cf14,
+			cf15,
+			cf16,
+			cf17,
+			cf18,
+			cf19,
+			cf20
+		from bus_cform
+		where 1=1
+		<if test="record!=null">
+			<if test="(record.cfId!=null and record.cfId!='') or (record.cfId!='' and record.cfId==0)">
+				and cfId = #{record.cfId} 
+			</if>
+			<if test="(record.cf1!=null and record.cf1!='') or (record.cf1!='' and record.cf1==0)">
+				and cf1 = #{record.cf1} 
+			</if>
+			<if test="(record.cf2!=null and record.cf2!='') or (record.cf2!='' and record.cf2==0)">
+				and cf2 = #{record.cf2} 
+			</if>
+			<if test="(record.cf3!=null and record.cf3!='') or (record.cf3!='' and record.cf3==0)">
+				and cf3 = #{record.cf3} 
+			</if>
+			<if test="(record.cf4!=null and record.cf4!='') or (record.cf4!='' and record.cf4==0)">
+				and cf4 = #{record.cf4} 
+			</if>
+			<if test="(record.cf5!=null and record.cf5!='') or (record.cf5!='' and record.cf5==0)">
+				and cf5 = #{record.cf5} 
+			</if>
+			<if test="(record.cf6!=null and record.cf6!='') or (record.cf6!='' and record.cf6==0)">
+				and cf6 = #{record.cf6} 
+			</if>
+			<if test="(record.cf7!=null and record.cf7!='') or (record.cf7!='' and record.cf7==0)">
+				and cf7 = #{record.cf7} 
+			</if>
+			<if test="(record.cf8!=null and record.cf8!='') or (record.cf8!='' and record.cf8==0)">
+				and cf8 = #{record.cf8} 
+			</if>
+			<if test="(record.cf9!=null and record.cf9!='') or (record.cf9!='' and record.cf9==0)">
+				and cf9 = #{record.cf9} 
+			</if>
+			<if test="(record.cf10!=null and record.cf10!='') or (record.cf10!='' and record.cf10==0)">
+				and cf10 = #{record.cf10} 
+			</if>
+			<if test="(record.cf11!=null and record.cf11!='') or (record.cf11!='' and record.cf11==0)">
+				and cf11 = #{record.cf11} 
+			</if>
+			<if test="(record.cf12!=null and record.cf12!='') or (record.cf12!='' and record.cf12==0)">
+				and cf12 = #{record.cf12} 
+			</if>
+			<if test="(record.cf13!=null and record.cf13!='') or (record.cf13!='' and record.cf13==0)">
+				and cf13 = #{record.cf13} 
+			</if>
+			<if test="(record.cf14!=null and record.cf14!='') or (record.cf14!='' and record.cf14==0)">
+				and cf14 = #{record.cf14} 
+			</if>
+			<if test="(record.cf15!=null and record.cf15!='') or (record.cf15!='' and record.cf15==0)">
+				and cf15 = #{record.cf15} 
+			</if>
+			<if test="(record.cf16!=null and record.cf16!='') or (record.cf16!='' and record.cf16==0)">
+				and cf16 = #{record.cf16} 
+			</if>
+			<if test="(record.cf17!=null and record.cf17!='') or (record.cf17!='' and record.cf17==0)">
+				and cf17 = #{record.cf17} 
+			</if>
+			<if test="(record.cf18!=null and record.cf18!='') or (record.cf18!='' and record.cf18==0)">
+				and cf18 = #{record.cf18} 
+			</if>
+			<if test="(record.cf19!=null and record.cf19!='') or (record.cf19!='' and record.cf19==0)">
+				and cf19 = #{record.cf19} 
+			</if>
+			<if test="(record.cf20!=null and record.cf20!='') or (record.cf20!='' and record.cf20==0)">
+				and cf20 = #{record.cf20} 
+			</if>
+		</if>
+	</select>
+</mapper>
